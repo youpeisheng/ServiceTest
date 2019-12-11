@@ -41,7 +41,7 @@ public class MyService extends Service {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate() { //前台服务
         super.onCreate();
         Log.d("MyService","onCreate MyService");
         Intent intent=new Intent(this,MainActivity.class);

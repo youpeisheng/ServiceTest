@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,10 +37,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button unbindService=(Button) findViewById(R.id.unbind_service);
         bindService.setOnClickListener(this);
         unbindService.setOnClickListener(this);
+        Button startIntentService=(Button) findViewById(R.id.start_intentservice);
+        startIntentService.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.start_intentservice:
+                //打印主线程id
+                Log.d("MainActivity","Thread id is"+Thread.currentThread().getId());
+                Intent intentService=new Intent(this,MyIntentService.class);
+                startService(intentService);
+                break;
             case R.id.start_service:
                 Intent startIntent=new Intent(this,MyService.class);
                 startService(startIntent);//启动服务
